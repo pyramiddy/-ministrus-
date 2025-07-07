@@ -1,0 +1,54 @@
+						  
+						  |remoçao comando|
+
+#***************************************************
+
+Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "WindowsUpdateService"
+
+#***************************************************
+
+		|Pastas auxiliares criadas| 
+
+Remove-Item -Recurse -Force "$env:APPDATA\Microsoft\Windows\sqlite"
+Remove-Item -Recurse -Force "$env:APPDATA\Microsoft\Windows\ffmpeg"
+
+#***************************************************
+
+		|Arquivos temporários (logs, relatórios, fotos)|
+
+Remove-Item "$env:TEMP\report.txt","$env:TEMP\Chrome_History_Report.txt","$env:TEMP\Login_Report.txt","$env:TEMP\debug_script.log","$env:TEMP\history_temp.db" -ErrorAction SilentlyContinue
+Remove-Item "$env:TEMP\webcam_*.jpg" -ErrorAction SilentlyContinue
+Remove-Item "$env:TEMP\sqlite.zip","$env:TEMP\ffmpeg.zip" -ErrorAction SilentlyContinue
+
+#***************************************************
+
+		|Arquivos de e-mail| 
+
+Remove-Item "$PSScriptRoot\email.secure","$PSScriptRoot\appPassword.secure" -ErrorAction SilentlyContinue
+
+#***************************************************
+
+	        |Para finalizar a desinstalação completa:|
+
+Apagar o script instalado: Remove-Item "$env:APPDATA\Microsoft\Windows\WindowsUpdateService.ps1" -Force
+
+#***************************************************
+
+ 		|Apagar as pastas baixadas|
+
+Remove-Item "$env:APPDATA\Microsoft\Windows\sqlite" -Recurse -Force
+Remove-Item "$env:APPDATA\Microsoft\Windows\ffmpeg" -Recurse -Force
+
+#***************************************************
+		|Limpar arquivos temporarios|
+
+Remove-Item "$env:TEMP\report.txt","$env:TEMP\Chrome_History_Report.txt","$env:TEMP\Login_Report.txt","$env:TEMP\debug_script.log","$env:TEMP\history_temp.db" -ErrorAction SilentlyContinue
+Remove-Item "$env:TEMP\webcam_*.jpg","$env:TEMP\sqlite.zip","$env:TEMP\ffmpeg.zip" -ErrorAction SilentlyContinue
+
+#***************************************************
+
+		|Deletar credenciais se ainda tiver|
+
+Remove-Item "$PSScriptRoot\email.secure","$PSScriptRoot\appPassword.secure" -ErrorAction SilentlyContinue
+
+#***************************************************
